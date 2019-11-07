@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.map {
+  width: 640px;
+  height: 960px;
+  image-rendering: optimizeSpeed;
+  image-rendering: pixelated;
+}

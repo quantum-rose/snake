@@ -69,7 +69,8 @@ class Game {
    */
   initController() {
     let { snake } = this
-    document.addEventListener('keydown', e => {
+
+    window.onkeydown = e => {
       if (this.banController) return
       this.banController = true
       switch (e.keyCode) {
@@ -88,7 +89,7 @@ class Game {
         default:
           return
       }
-    })
+    }
   }
 
   /**

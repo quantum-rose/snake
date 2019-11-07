@@ -5,7 +5,7 @@ class Food {
     this.map = map
     this.width = 1
     this.height = 1
-    this.color = '#0f0'
+    this.color = '#8f8'
     this.x = 0
     this.y = 0
   }

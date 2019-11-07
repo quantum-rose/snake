@@ -1,27 +1,41 @@
+import { intRandom } from './tools'
+
 class Snake {
   constructor(map) {
     this.map = map
     this.width = 1
     this.height = 1
-    this.direction = 'right'
-    // 蛇的初始状态
-    this.body = [
-      {
-        x: 3,
-        y: 2,
-        color: '#f00'
-      },
-      {
-        x: 2,
-        y: 2,
-        color: '#00f'
-      },
-      {
-        x: 1,
-        y: 2,
-        color: '#00f'
+
+    // 随机的初始运动方向
+    let directionArray = ['top', 'right', 'bottom', 'left']
+    this.direction = directionArray[intRandom(0, 3)]
+
+    // 随机的初始位置
+    let x = intRandom(2, map.width - 3)
+    let y = intRandom(2, map.height - 3)
+
+    this.body = []
+    for (let i = 0; i < 3; i++) {
+      switch (this.direction) {
+        case 'top':
+          y += 1
+          break
+        case 'right':
+          x -= 1
+          break
+        case 'bottom':
+          y -= 1
+          break
+        case 'left':
+          x += 1
+          break
       }
-    ]
+      this.body.push({
+        x,
+        y,
+        color: i
+      })
+    }
   }
 
   render() {
@@ -29,9 +43,9 @@ class Snake {
     let { mapArray, ctx } = map
 
     // 将蛇渲染到地图上
-    body.forEach(item => {
+    body.forEach((item, index) => {
       mapArray[item.y][item.x] = 2
-      ctx.fillStyle = item.color
+      ctx.fillStyle = `hsl(${item.color}, 100%, 50%)`
       ctx.fillRect(item.x, item.y, width, height)
     })
   }
@@ -80,7 +94,7 @@ class Snake {
     body.push({
       x,
       y,
-      color
+      color: color + 1
     })
   }
 }
